@@ -36,16 +36,24 @@ public class ChessView extends Application implements Observer{
 	public static ChessController control;
 	private static boolean canClick;
 	private static Stage stageInstance;
-	public static GridPane gridPane;
+	public static GridPane pane;
 
     @Override
     public void start(Stage stage) {
         // Create a GridPane
     	model = new ChessModel();
     	BorderPane borderPane = new BorderPane();
-    	GridPane pane = new GridPane();
-        //pane.setPadding(new Insets(60, 60, 60, 60));
-        // Create 64 rectangles and add to pane
+    	pane = new GridPane();
+    	initBoard();
+        borderPane.setCenter(pane);
+        Scene scene = new Scene(borderPane, 750, 750);
+        stage.setTitle("Chess!");
+        stage.setScene(scene); 
+        stage.show();
+        
+      }
+    
+    private void initBoard() {
     	String alphabet = "ABCDEGFHI";
         int count = 0;
         double s = 75; // side of square
@@ -132,21 +140,11 @@ public class ChessView extends Application implements Observer{
 	            	ImageView iv = model.whitePawn.getImage();
 	            	pane.add(iv, j, i);
 	            }
-	            //vbox.getChildren().add(square);
-	            //vbox.getChildren().add(blackBishopV);
         	}
             count++;
           }
         }
-
-        // Create a scene and place it in the stage
-        borderPane.setCenter(pane);
-        Scene scene = new Scene(borderPane, 750, 750);
-        stage.setTitle("java2s.com");
-        stage.setScene(scene); // Place in scene in the stage
-        stage.show();
-        
-      }
+    }
 
 	public static void main(String[] args) {
 		launch(args);
