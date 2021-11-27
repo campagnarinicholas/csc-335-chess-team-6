@@ -1,5 +1,9 @@
 package model;
 
-public class ChessModel {
+import java.util.Observable;
+
+import view.ChessView;
+
+public class ChessModel extends Observable{
 
 }
