@@ -23,7 +23,13 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import model.Bishop;
 import model.ChessModel;
+import model.King;
+import model.Knight;
+import model.Pawn;
+import model.Queen;
+import model.Rook;
 
 public class ChessView extends Application implements Observer{
 	public static ChessModel model;
@@ -35,30 +41,7 @@ public class ChessView extends Application implements Observer{
     @Override
     public void start(Stage stage) {
         // Create a GridPane
-    	Image blackBishop = new Image("images/black_bishop.png");
-    	ImagePattern blackBishopIp = new ImagePattern(blackBishop);
-    	Image blackKing = new Image("images/black_king.png");
-    	ImagePattern blackKingIp = new ImagePattern(blackKing);
-    	Image blackKnight = new Image("images/black_knight.png");
-    	ImagePattern blackKnightIp = new ImagePattern(blackKnight);
-    	Image blackPawn = new Image("images/black_pawn.png");
-    	ImagePattern blackPawnIp = new ImagePattern(blackPawn);
-    	Image blackQueen = new Image("images/black_queen.png");
-    	ImagePattern blackQueenIp = new ImagePattern(blackQueen);
-    	Image blackRook = new Image("images/black_rook.png");
-    	ImagePattern blackRookIp = new ImagePattern(blackRook);
-    	Image whiteBishop = new Image("images/white_bishop.png");
-    	ImagePattern whiteBishopIp = new ImagePattern(whiteBishop);
-    	Image whiteKing = new Image("images/white_king.png");
-    	ImagePattern whiteKingIp = new ImagePattern(whiteKing);
-    	Image whiteKnight = new Image("images/white_knight.png");
-    	ImagePattern whiteKnightIp = new ImagePattern(whiteKnight);
-    	Image whitePawn = new Image("images/white_pawn.png");
-    	ImagePattern whitePawnIp = new ImagePattern(whitePawn);
-    	Image whiteQueen = new Image("images/white_queen.png");
-    	ImagePattern whiteQueenIp = new ImagePattern(whiteQueen);
-    	Image whiteRook = new Image("images/white_rook.png");
-    	ImagePattern whiteRookIp = new ImagePattern(whiteRook);
+    	model = new ChessModel();
     	BorderPane borderPane = new BorderPane();
     	GridPane pane = new GridPane();
         //pane.setPadding(new Insets(60, 60, 60, 60));
@@ -75,12 +58,14 @@ public class ChessView extends Application implements Observer{
         		Label label = new Label(letter);
         		label.setFont(new Font("Cambria", 32));
         		vbox.getChildren().add(label);
+        		pane.add(vbox, i, j);
         	}
         	else if (j == 0 && i != 0 && i != 9|| j == 9 && i != 0 && i != 9) {
         		String letter = String.valueOf(9-i);
         		Label label = new Label(letter);
         		label.setFont(new Font("Cambria", 32));
         		vbox.getChildren().add(label);
+        		pane.add(vbox, i, j);
         	}
         	else if (i == 0 && j == 0 || i == 9 && j == 9) {
 	            Rectangle square = new Rectangle(s, s, s, s);
@@ -90,52 +75,66 @@ public class ChessView extends Application implements Observer{
         	}
         	else {
 	            Rectangle square = new Rectangle(s, s, s, s);
-	            square.setStroke(Color.BLACK);
+	            square.setStroke(Color.GREY);
 	            if (count % 2 == 0) {
 	              square.setFill(Color.WHITE);
 	            }
+	            else {
+	            	square.setFill(Color.GREY);
+	            }
+	            pane.add(square, j, i);
 	            if (i == 1 && j == 1 || i == 1 && j == 8) {
-	            	square.setFill(blackRookIp);
+	            	ImageView iv = model.blackRook.getImage();
+	            	pane.add(iv, j, i);
 	            	//vbox = new VBox(blackBishopV);
 	            }
 	            if (i == 1 && j == 2 || i == 1 && j == 7) {
-	            	square.setFill(blackKnightIp);
+	            	ImageView iv = model.blackKnight.getImage();
+	            	pane.add(iv, j, i);
 	            }
 	            if (i == 1 && j == 3 || i == 1 && j == 6) {
-	            	square.setFill(blackBishopIp);
+	            	ImageView iv = model.blackBishop.getImage();
+	            	pane.add(iv, j, i);
 	            }
 	            if (i == 1 && j == 4) {
-	            	square.setFill(blackQueenIp);
+	            	ImageView iv = model.blackQueen.getImage();
+	            	pane.add(iv, j, i);
 	            }
 	            if (i == 1 && j == 5) {
-	            	square.setFill(blackKingIp);
+	            	ImageView iv = model.blackKing.getImage();
+	            	pane.add(iv, j, i);
 	            }
 	            if (i == 2) {
-	            	square.setFill(blackPawnIp);
+	            	ImageView iv = model.blackPawn.getImage();
+	            	pane.add(iv, j, i);
 	            }
 	            if (i == 8 && j == 1 || i == 8 && j == 8) {
-	            	square.setFill(whiteRookIp);
-	            	//vbox = new VBox(blackBishopV);
+	            	ImageView iv = model.whiteRook.getImage();
+	            	pane.add(iv, j, i);
 	            }
 	            if (i == 8 && j == 2 || i == 8 && j == 7) {
-	            	square.setFill(whiteKnightIp);
+	            	ImageView iv = model.whiteKnight.getImage();
+	            	pane.add(iv, j, i);
 	            }
 	            if (i == 8 && j == 3 || i == 8 && j == 6) {
-	            	square.setFill(whiteBishopIp);
+	            	ImageView iv = model.whiteBishop.getImage();
+	            	pane.add(iv, j, i);
 	            }
 	            if (i == 8 && j == 4) {
-	            	square.setFill(whiteQueenIp);
+	            	ImageView iv = model.whiteQueen.getImage();
+	            	pane.add(iv, j, i);
 	            }
 	            if (i == 8 && j == 5) {
-	            	square.setFill(whiteKingIp);
+	            	ImageView iv = model.whiteKing.getImage();
+	            	pane.add(iv, j, i);
 	            }
 	            if (i == 7) {
-	            	square.setFill(whitePawnIp);
+	            	ImageView iv = model.whitePawn.getImage();
+	            	pane.add(iv, j, i);
 	            }
-	            vbox.getChildren().add(square);
+	            //vbox.getChildren().add(square);
 	            //vbox.getChildren().add(blackBishopV);
         	}
-            pane.add(vbox, j, i);
             count++;
           }
         }
