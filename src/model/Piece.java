@@ -5,10 +5,10 @@ import java.util.ArrayList;
 public abstract class Piece {
 	private int x;
 	private int y;
-	private String color;
+	private int color;
 	private ArrayList<ArrayList<Piece>> board;
 	
-	public Piece(int x, int y, String color, ArrayList<ArrayList<Piece>> board) {
+	public Piece(int x, int y, int color, ArrayList<ArrayList<Piece>> board) {
 		this.x = x;
 		this.y = y;
 		this.color = color;
@@ -19,7 +19,7 @@ public abstract class Piece {
 	 * Gets the color of the piece
 	 * @return color
 	 */
-	public String getColor() {
+	public int getColor() {
 		return color;
 	}
 	

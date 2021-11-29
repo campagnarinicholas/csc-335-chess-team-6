@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class King extends Piece {
 	private boolean isChecked;
 
-	public King(int x, int y, String color, ArrayList<ArrayList<Piece>> board) {
+	public King(int x, int y, int color, ArrayList<ArrayList<Piece>> board) {
 		super(x, y, color, board);
 		isChecked = false;
 	}

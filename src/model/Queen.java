@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Queen extends Piece {
 
-	public Queen(int x, int y, String color, ArrayList<ArrayList<Piece>> board) {
+	public Queen(int x, int y, int color, ArrayList<ArrayList<Piece>> board) {
 		super(x, y, color, board);
 	}
 

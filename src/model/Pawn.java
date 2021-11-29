@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Pawn extends Piece {
 	private boolean hasMoved;
 	
-	public Pawn(int x, int y, String color, ArrayList<ArrayList<Piece>> board) {
+	public Pawn(int x, int y, int color, ArrayList<ArrayList<Piece>> board) {
 		super(x, y, color, board);
 		hasMoved = false;
 	}
