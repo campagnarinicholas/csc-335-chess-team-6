@@ -56,6 +56,14 @@ public abstract class Piece {
 	}
 	
 	/**
+	 * Updates the state of the board
+	 * @param board new state of the game board
+	 */
+	public void updateBoard(ArrayList<ArrayList<Piece>> board) {
+		this.board = board;
+	}
+	
+	/**
 	 * Determines if the piece can move to the desired x,y position on the board
 	 * @param destinationX x coordinate of new position
 	 * @param destinationY y coordinate of new position
