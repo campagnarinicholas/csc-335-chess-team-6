@@ -50,7 +50,6 @@ public class ChessView extends Application implements Observer{
         stage.setTitle("Chess!");
         stage.setScene(scene); 
         stage.show();
-        
       }
     
     private void initBoard() {

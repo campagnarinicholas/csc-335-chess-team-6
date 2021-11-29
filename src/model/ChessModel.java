@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Observable;
 
 import javafx.scene.paint.Color;
@@ -23,18 +24,19 @@ public class ChessModel extends Observable{
 	
 	
 	public ChessModel() {
-		whiteBishop = new Bishop(1);
-		whiteKing = new King(1);
-		whiteKnight = new Knight(1);
-		whitePawn = new Pawn(1);
-		whiteQueen = new Queen(1);
-		whiteRook = new Rook(1);
+		ArrayList<ArrayList<Piece>> b = new ArrayList();
+		whiteBishop = new Bishop(0, 0, 1, b);
+		whiteKing = new King(0, 0, 1, b);
+		whiteKnight = new Knight(0, 0, 1, b);
+		whitePawn = new Pawn(0, 0, 1, b);
+		whiteQueen = new Queen(0, 0, 1, b);
+		whiteRook = new Rook(0, 0, 1, b);
 		
-		blackBishop = new Bishop(2);
-		blackKing = new King(2);
-		blackKnight = new Knight(2);
-		blackPawn = new Pawn(2);
-		blackQueen = new Queen(2);
-		blackRook = new Rook(2);
+		blackBishop = new Bishop(0, 0, 2, b);
+		blackKing = new King(0, 0, 2, b);
+		blackKnight = new Knight(0, 0, 2, b);
+		blackPawn = new Pawn(0, 0, 2, b);
+		blackQueen = new Queen(0, 0, 2, b);
+		blackRook = new Rook(0, 0, 2, b);
 	}
 }

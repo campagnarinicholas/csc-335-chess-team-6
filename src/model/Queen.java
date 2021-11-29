@@ -1,19 +1,25 @@
 package model;
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import java.util.ArrayList;
 
-public class Queen extends Piece{
+public class Queen extends Piece {
 	private Image image;
-	Queen(int color) {
-		super(color, "queen");
+	public Queen(int x, int y, int color, ArrayList<ArrayList<Piece>> board) {
+		super(x, y, color, board);
 		if (color == 2) {
 			this.image = new Image("images/black_queen.png");
 		}
 		else {
 			this.image = new Image("images/white_queen.png");
 		}
+	}
+
+	@Override
+	public boolean canMove(int destinationX, int destinationY) {
+		// TODO:Implement Method
+		return false;
 	}
 	
 	public ImageView getImage() {
@@ -22,5 +28,4 @@ public class Queen extends Piece{
 		iv.setFitWidth(60);
 		return iv;
 	}
-	
 }
